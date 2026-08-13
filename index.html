@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1.0">
+<title>7ನೇ Class SL English ಪ್ರಶ್ನೆ ಪತ್ರಿಕೆ ರಚನಾ ಟೂಲ್</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:"Noto Sans Kannada","Noto Sans",Arial,sans-serif;background:linear-gradient(135deg,#eef2f5 0%,#e4ecf7 100%);margin:0;padding:20px;color:#222}
+.no-print{display:block} h1{text-align:center;color:#1a3c6e;margin-bottom:4px}.subtitle{text-align:center;color:#555;margin-bottom:20px}
+.container{max-width:950px;margin:0 auto}
+.panel{background:#fff;width:100%;margin-bottom:20px;padding:20px 25px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.08);border-left:6px solid #1a3c6e;transition:transform .2s ease}
+.panel:hover{transform:translateY(-2px)} .panel.panel-1{border-left-color:#1a3c6e;background:linear-gradient(to right,#f4f8ff,#fff)}
+.panel.panel-2{border-left-color:#2e7d32;background:linear-gradient(to right,#f1f8e9,#fff)} .panel.panel-3{border-left-color:#f57c00;background:linear-gradient(to right,#fff3e0,#fff)}
+.panel h2{font-size:18px;color:#1a3c6e;border-bottom:2px solid rgba(0,0,0,.1);padding-bottom:6px;margin-top:0}
+.panel.panel-2 h2{color:#2e7d32}.panel.panel-3 h2{color:#f57c00}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}.field{display:flex;flex-direction:column}
+label{font-weight:bold;margin-bottom:5px;font-size:14px;color:#333}
+input[type=text],input[type=date],select{padding:9px 11px;border:1px solid #bbb;border-radius:8px;font-size:15px;font-family:Arial,"Noto Sans Kannada",sans-serif}
+input[type=text]:focus,input[type=date]:focus,select:focus{outline:none;border-color:#1a3c6e;box-shadow:0 0 0 3px rgba(26,60,110,.15)}
+.pill-row{display:flex;gap:12px;flex-wrap:wrap}.pill{position:relative;padding:10px 20px;border-radius:24px;border:2px solid #cdd9e5;background:#f6f9fc;cursor:pointer;font-weight:600;font-size:15px;color:#345;transition:all .18s ease;user-select:none}
+.pill input{position:absolute;opacity:0;width:0;height:0}.pill:hover{border-color:#7d9cc4;transform:translateY(-1px)}
+.pill.selected{background:linear-gradient(135deg,#f57c00,#e65100);border-color:#e65100;color:#fff;box-shadow:0 3px 10px rgba(245,124,0,.35)}
+.btnrow{text-align:center;margin-top:18px}
+button{background:linear-gradient(135deg,#1a3c6e,#2c5aa0);color:#fff;border:none;padding:12px 24px;font-size:15.5px;border-radius:24px;cursor:pointer;margin:4px 6px;font-family:inherit;font-weight:600;box-shadow:0 2px 8px rgba(26,60,110,.25)}
+button.secondary{background:linear-gradient(135deg,#5a7ca8,#7594bb)}button.reset{background:linear-gradient(135deg,#a33,#c44)}button.answerBtn{background:linear-gradient(135deg,#1a8a5f,#25b57e)}
+button:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.25)}
+.print-option-box{margin-top:12px;font-size:15px;font-weight:bold;color:#1a8a5f;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer}
+.print-option-box input{width:18px;height:18px;accent-color:#1a8a5f;cursor:pointer}.hint{font-size:12.5px;color:#777;margin-top:6px}
+#paperWrap{max-width:900px;margin:0 auto}
+#paper{background:#fff;padding:15mm 15mm 20mm;min-height:297mm;width:210mm;margin:0 auto;box-shadow:0 2px 14px rgba(0,0,0,.15);line-height:1.7;border:2px solid #222;position:relative;font-family:Arial,"Noto Sans Kannada",sans-serif}
+.school-name{text-align:center;font-size:22px;font-weight:bold;color:#111}.test-title{text-align:center;font-size:17px;font-weight:bold;margin-top:2px}.subject-line{text-align:center;font-size:15px;margin-top:2px}
+.meta-row{display:flex;justify-content:space-between;margin-top:14px;font-size:14.5px;flex-wrap:wrap}.meta-row div{min-width:45%;margin-bottom:4px}
+hr.sep{border:none;border-top:2px solid #333;margin:14px 0}.section-title{font-weight:bold;font-size:15.5px;margin-top:18px;margin-bottom:8px;background:#eef2f8;padding:6px 10px;border-left:4px solid #1a3c6e}
+ol.qlist{padding-left:22px;margin:0}ol.qlist li{margin-bottom:10px;font-size:15px}.qmark{color:#a33;font-weight:bold;font-size:13px}
+[contenteditable=true]{outline:1px dashed transparent;border-radius:3px}[contenteditable=true]:hover,[contenteditable=true]:focus{outline:1px dashed #7aa;background:#fbfffb}
+.marks-formula-box{text-align:center;font-weight:bold;font-size:16px;margin-top:16px;padding:10px;border:2px dashed #1a3c6e;border-radius:8px;background:#f4f8ff;color:#1a3c6e}
+.pdf-footer{position:absolute;bottom:10mm;left:15mm;right:15mm;text-align:center;font-size:12px;color:#444;border-top:1px solid #ccc;padding-top:5px;font-family:Arial,sans-serif!important}
+.pdf-footer a{color:#1a3c6e;text-decoration:none;font-weight:bold;font-family:Arial,sans-serif!important}
+#answerSection{display:none;margin-top:20px;padding-top:12px;border-top:3px double #333;page-break-before:always}
+.answer-title{text-align:center;font-size:17px;font-weight:bold;color:#1a8a5f;margin-bottom:12px;text-decoration:underline}
+ol.alist{padding-left:22px;margin:0 0 14px}ol.alist li{margin-bottom:8px;font-size:14.5px;color:#222}
+footer.ui-footer{text-align:center;padding:25px;margin-top:40px;color:#333;font-size:15px;border-top:1px solid #ddd;background:#fff;font-family:Arial,sans-serif!important}
+footer.ui-footer a{color:#1a3c6e;text-decoration:none;font-weight:bold;font-family:Arial,sans-serif!important}
+@media print{
+body{background:#fff;padding:0}.panel,.btnrow,.no-print,h1,.subtitle,footer.ui-footer{display:none!important}
+#paperWrap{max-width:none}#paper{box-shadow:none;margin:0;width:100%;height:100%;padding:15mm 15mm 20mm;border:2.5px solid #000!important}
+#answerSection.print-with-answers{display:block!important}#answerSection:not(.print-with-answers){display:none!important}
+.pdf-footer{position:fixed;bottom:10mm;left:15mm;right:15mm}@page{size:A4;margin:10mm}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1 class="no-print">Unit-wise Question Paper Generator</h1>
+<div class="subtitle no-print">7th Standard Second Language English – Part 1 | 2026-27 | For Teachers</div>
+
+<div class="panel panel-1 no-print">
+<h2>1. School and Examination Details</h2>
+<div class="grid">
+<div class="field"><label>School Name</label><input type="text" id="schoolName" placeholder="ಉದಾ: GHPS Ramasagara / ಪ್ರಾಥಮಿಕ ಶಾಲೆ ರಾಮಸಾಗರ"></div>
+<div class="field"><label>ವಿಷಯ</label><input type="text" id="subject" value="English – Second Language"></div>
+<div class="field"><label>Class</label><input type="text" id="className" value="7ನೇ Class"></div>
+<div class="field"><label>Academic Year</label><input type="text" id="testName" value="2026-27"></div>
+<div class="field"><label>Teacher Name</label><input type="text" id="teacherName" placeholder="Teacher Name"></div>
+<div class="field"><label>Date</label><input type="date" id="examDate"></div>
+</div></div>
+
+<div class="panel panel-2 no-print">
+<h2>2. Select Unit / Lesson / Poem</h2>
+<div class="grid">
+<div class="field"><label>Section</label><select id="sectionSelect"></select></div>
+<div class="field"><label>Unit / Lesson / Poem</label><select id="chapterSelect"></select></div>
+</div>
+<div class="hint">Select from the Prose, Poetry and Supplementary Reading lessons of 7th Standard SL English Part-1.</div>
+</div>
+
+<div class="panel panel-3 no-print">
+<h2>3. Total Marks</h2>
+<div class="pill-row">
+<label class="pill" data-val="15"><input type="radio" name="marks" value="15"> 15 Marks</label>
+<label class="pill selected" data-val="20"><input type="radio" name="marks" value="20" checked> 20 Marks</label>
+<label class="pill" data-val="25"><input type="radio" name="marks" value="25"> 25 Marks</label>
+</div>
+<div class="btnrow">
+<button onclick="generatePaper()">✅ Generate Question Paper</button>
+<button class="secondary" onclick="shuffleQuestions()">🔄 Change Questions</button>
+<button class="reset" onclick="resetAll()">♻️ Reset</button>
+</div></div></div>
+
+<div id="paperWrap"><div id="paper" style="display:none;"></div></div>
+
+<div class="btnrow no-print" id="printBtnRow" style="display:none;">
+<button onclick="window.print()">🖨️ Print (A4)</button>
+<button class="secondary" onclick="addCustomQuestion()">➕ Add My Own Question</button>
+<button class="answerBtn" onclick="toggleAnswers()">🔑 Click Here for Answer Key</button>
+<div class="print-option-box"><input type="checkbox" id="includeAnswersPrint" onchange="updatePrintPreference()">
+<label for="includeAnswersPrint" style="cursor:pointer;">Tick here to include answers in print</label></div>
+</div>
+
+<footer class="ui-footer no-print">
+<strong>SCHOOL RESOURCE CENTER</strong><br>
+<a href="" target="_blank">https://bilingualmediumschools.blogspot.com/</a>
+</footer>
+
+<script>
+const DATA={
+  "ಗದ್ಯ Section": [
+    {
+      "no": 1,
+      "name": "Healthy Life",
+      "author": "Pedro Pablo Sacristan",
+      "q1": [
+        {
+          "q": "Which was the healthiest place that you could imagine?",
+          "a": "The earth was the healthiest place imaginable."
+        },
+        {
+          "q": "Who was furious?",
+          "a": "One of the witches was furious."
+        },
+        {
+          "q": "What made the potion go wrong?",
+          "a": "One of the witches made a mistake while uttering the magic words."
+        },
+        {
+          "q": "What happened after the explosion?",
+          "a": "The witches were turned into tiny creatures like germs."
+        },
+        {
+          "q": "Why did the little boy drink the liquid in the bottle?",
+          "a": "He thought it was a nice new drink."
+        },
+        {
+          "q": "What healthy activities did people enjoy in the past?",
+          "a": "They ate varied food, fruits and vegetables, exercised, walked, ran and played."
+        },
+        {
+          "q": "Why did the witch want to prepare a potion?",
+          "a": "She was angry because people were strong, healthy and happy."
+        },
+        {
+          "q": "What was the purpose of the witches' potion?",
+          "a": "It was intended to make people lose the desire to live."
+        },
+        {
+          "q": "What mistake caused the explosion?",
+          "a": "A witch made a mistake while saying the magic words."
+        },
+        {
+          "q": "What happened to the witches after the explosion?",
+          "a": "They became tiny creatures like germs and were trapped in liquid."
+        },
+        {
+          "q": "What is the main message of 'Healthy Life'?",
+          "a": "A healthy life needs good food, regular exercise and healthy habits."
+        }
+      ],
+      "q2": [
+        {
+          "q": "Why did the little boy drink the liquid?",
+          "a": "He believed that the bottle contained a new and pleasant drink."
+        },
+        {
+          "q": "How had people's lifestyle changed before they visited Dr. Fitton-Healthy?",
+          "a": "They had given up healthy habits and become unhealthy."
+        },
+        {
+          "q": "What was Dr. Fitton-Healthy's main advice?",
+          "a": "He advised people to follow healthy food habits, exercise and an active lifestyle."
+        },
+        {
+          "q": "What message does the lesson give about health?",
+          "a": "Healthy food, exercise and good habits keep the body and mind healthy."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the main message of 'Healthy Life'.",
+          "a": "The lesson shows that a healthy life depends on balanced food, regular exercise, active habits and a cheerful mind. Unhealthy habits can harm our health, so we should choose a healthy lifestyle."
+        },
+        {
+          "q": "How did the witches' plan fail and how is the importance of health shown?",
+          "a": "The witches' potion went wrong because of a mistake in the spell, and the witches themselves became tiny creatures. The lesson then stresses the importance of healthy habits through the advice given by the doctor."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "name": "Avoid Plastics",
+      "author": "Textbook lesson",
+      "q1": [
+        {
+          "q": "Who created the first man-made plastic?",
+          "a": "Alexander Parkes."
+        },
+        {
+          "q": "What name did he give it?",
+          "a": "Parkesine."
+        },
+        {
+          "q": "Name two useful qualities of plastic.",
+          "a": "It is cheap, durable and can be moulded into different shapes."
+        },
+        {
+          "q": "Why do people throw plastic everywhere?",
+          "a": "Because it is cheap, easily available and often discarded after use."
+        },
+        {
+          "q": "Where is plastic pollution especially visible?",
+          "a": "It is especially visible in large cities."
+        },
+        {
+          "q": "Why does plastic remain in the soil for a long time?",
+          "a": "Because plastic does not easily biodegrade."
+        },
+        {
+          "q": "How does plastic production harm the environment?",
+          "a": "Some chemicals used in production can be harmful to living beings and the environment."
+        },
+        {
+          "q": "What happens when plastic reaches rivers and seas?",
+          "a": "It pollutes water and harms aquatic life."
+        },
+        {
+          "q": "Can plastic use be reduced even if it cannot be completely stopped?",
+          "a": "Yes. Its production and use can be reduced and safer alternatives can be used."
+        },
+        {
+          "q": "Why is plastic widely used?",
+          "a": "It is cheap, light, durable and easy to mould."
+        }
+      ],
+      "q2": [
+        {
+          "q": "How can plastic production harm the environment?",
+          "a": "Some chemicals used during production may pollute the environment and harm living organisms."
+        },
+        {
+          "q": "Why does a plastic sheet take a very long time to decompose?",
+          "a": "Plastic is not easily broken down by natural biological processes."
+        },
+        {
+          "q": "What happens when plastic enters rivers and seas?",
+          "a": "It pollutes water and can injure or kill aquatic organisms."
+        },
+        {
+          "q": "What can we do if we cannot stop using plastic completely?",
+          "a": "We can reduce unnecessary use, reuse suitable items and choose alternatives."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the environmental message of 'Avoid Plastics'.",
+          "a": "Plastic is useful and inexpensive, but its production, use and disposal can damage soil, water, animals and the wider environment. We should reduce unnecessary plastic use and choose better alternatives."
+        },
+        {
+          "q": "Explain the environmental dangers caused by plastic.",
+          "a": "Plastic can pollute land and water, harm sea life and remain in the environment for a very long time. Reducing plastic waste is therefore important for environmental protection."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "name": "Ekalavya",
+      "author": "Shanta Rameshwar Rao",
+      "q1": [
+        {
+          "q": "Who was Ekalavya?",
+          "a": "Ekalavya was a determined young boy who wanted to learn archery."
+        },
+        {
+          "q": "Whom did Ekalavya approach to learn archery?",
+          "a": "He approached Dronacharya."
+        },
+        {
+          "q": "Why did Ekalavya want to learn archery?",
+          "a": "He wanted to become skilled in archery and protect what was dear to him."
+        },
+        {
+          "q": "Why did Drona not accept Ekalavya as a pupil?",
+          "a": "Drona refused because of his own conditions about whom he would teach."
+        },
+        {
+          "q": "How did Ekalavya honour Drona as his teacher?",
+          "a": "He made a statue of Drona and practised before it as his teacher."
+        },
+        {
+          "q": "How did Ekalavya learn archery by himself?",
+          "a": "He practised continuously before Drona's statue and developed great skill."
+        },
+        {
+          "q": "What qualities did Ekalavya possess?",
+          "a": "He showed devotion, hard work, determination, self-confidence and dedication."
+        },
+        {
+          "q": "What does the lesson teach about respect for a teacher?",
+          "a": "It shows the importance of respect, devotion and learning with determination."
+        }
+      ],
+      "q2": [
+        {
+          "q": "How did Ekalavya learn archery on his own?",
+          "a": "He treated Drona's statue as his teacher and practised regularly until he became highly skilled."
+        },
+        {
+          "q": "When did Drona notice Ekalavya's skill?",
+          "a": "Drona noticed his exceptional skill when he saw how accurately Ekalavya could shoot."
+        },
+        {
+          "q": "What are the important qualities of Ekalavya?",
+          "a": "He was devoted, hardworking, determined, confident and disciplined."
+        },
+        {
+          "q": "What does the lesson teach us about devotion to a teacher?",
+          "a": "It teaches us to respect our teachers and remain sincere and dedicated to learning."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Describe Ekalavya's achievement.",
+          "a": "Although he was not accepted directly as a pupil, Ekalavya accepted Drona as his mental teacher and practised before his statue. Through continuous effort he developed remarkable skill in archery."
+        },
+        {
+          "q": "What values can we learn from 'Ekalavya'?",
+          "a": "The lesson teaches determination, continuous practice, respect for a teacher, hard work and confidence in achieving a goal."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "name": "Leg Trap",
+      "author": "Manorama Jafa",
+      "q1": [
+        {
+          "q": "Who was Dhira?",
+          "a": "Dhira was a boy who earned his living by polishing shoes."
+        },
+        {
+          "q": "Where did Dhira work?",
+          "a": "He worked by the roadside, polishing shoes."
+        },
+        {
+          "q": "Who stopped Dhira from continuing his work?",
+          "a": "A suspicious customer stopped him."
+        },
+        {
+          "q": "What did the suspicious man ask Dhira to do?",
+          "a": "He asked Dhira to polish his shoes."
+        },
+        {
+          "q": "Why did Dhira become suspicious?",
+          "a": "The man's hurried behaviour and the suspicious object near his shoe made Dhira alert."
+        },
+        {
+          "q": "What did Dhira notice near the shoe?",
+          "a": "He noticed a clue connected with the stolen necklace."
+        },
+        {
+          "q": "How did Dhira help the police?",
+          "a": "He cleverly tied the man's shoelaces so that the man could not move easily and then called the police."
+        },
+        {
+          "q": "What evidence helped the police identify the thief?",
+          "a": "The stolen necklace and the disguise materials provided important evidence."
+        },
+        {
+          "q": "What reward did Dhira receive?",
+          "a": "He was appreciated and rewarded for his courage and presence of mind."
+        }
+      ],
+      "q2": [
+        {
+          "q": "What did Dhira find near the shoe?",
+          "a": "He found a clue that helped connect the man with the stolen jewellery."
+        },
+        {
+          "q": "How did Dhira help the police catch the thief?",
+          "a": "He used his presence of mind to trap the man with the shoelaces and then called the police."
+        },
+        {
+          "q": "What evidence did the police find?",
+          "a": "They found the stolen necklace and materials connected with the man's disguise."
+        },
+        {
+          "q": "How was Dhira honoured at the end?",
+          "a": "He was praised and rewarded for his courage and clever action."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Write the summary of 'Leg Trap'.",
+          "a": "Dhira, a young shoe-polisher, became suspicious of a customer while polishing his shoes. He noticed a clue related to a theft and cleverly trapped the man with his shoelaces. He then called the police and helped them catch the thief."
+        },
+        {
+          "q": "Describe Dhira's courage and presence of mind.",
+          "a": "Dhira remained alert in a difficult situation. Instead of becoming frightened, he noticed the suspicious clue and acted quickly and intelligently. His presence of mind helped the police catch the thief."
+        }
+      ]
+    }
+  ],
+  "ಪದ್ಯ Section": [
+    {
+      "no": 1,
+      "name": "The Gymnastic Clock",
+      "author": "M. C. Davies",
+      "q1": [
+        {
+          "q": "Who are the two main characters in the poem?",
+          "a": "The speaker and the gymnastic clock."
+        },
+        {
+          "q": "What does the clock remind the speaker to do?",
+          "a": "It reminds the speaker to exercise."
+        },
+        {
+          "q": "What kind of exercise is suggested?",
+          "a": "The poem describes simple movements and exercises."
+        },
+        {
+          "q": "What is amusing about the clock and the speaker?",
+          "a": "The clock behaves like a person giving exercise advice, which creates humour."
+        }
+      ],
+      "q2": [
+        {
+          "q": "Why is the clock proud of its exercise?",
+          "a": "It treats its regular movement as its own exercise."
+        },
+        {
+          "q": "How is humour created in the poem?",
+          "a": "The clock is personified and gives advice to the speaker as if it were a fitness instructor."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the central idea of 'The Gymnastic Clock'.",
+          "a": "The clock is presented as a lively character that reminds the speaker to exercise every morning. The poem uses humour and personification to encourage a healthy habit."
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "name": "Awareness",
+      "author": "Sylvia Stults",
+      "q1": [
+        {
+          "q": "Name two things that are thrown on the grass.",
+          "a": "Broken glass and old newspapers."
+        },
+        {
+          "q": "What is sprayed on food according to the poem?",
+          "a": "Pesticides and other harmful chemicals."
+        },
+        {
+          "q": "What danger do sea creatures face?",
+          "a": "They face pollution from oil and other harmful substances."
+        },
+        {
+          "q": "What does the poem ask us to develop?",
+          "a": "It asks us to develop awareness about environmental problems."
+        }
+      ],
+      "q2": [
+        {
+          "q": "How is nature harmed in the first part of the poem?",
+          "a": "Littering, excessive concrete and cutting trees damage the natural environment."
+        },
+        {
+          "q": "How is air pollution presented in the poem?",
+          "a": "Smoke and harmful gases from human activities are shown as making the air unsafe."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the message of the poem 'Awareness'.",
+          "a": "Human carelessness harms land, water, air and living things. We must understand these problems, protect nature and create awareness among others."
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "name": "Why God Made Teachers",
+      "author": "Kevin William Huff",
+      "q1": [
+        {
+          "q": "Who does the word 'His' refer to in the poem?",
+          "a": "It refers to God."
+        },
+        {
+          "q": "How do teachers help us?",
+          "a": "They help us understand the world and learn new things."
+        },
+        {
+          "q": "What qualities do teachers help students develop?",
+          "a": "They help students develop good judgement, strong character and positive values."
+        },
+        {
+          "q": "What should we do with the guidance of teachers?",
+          "a": "We should use their guidance to make our lives and our world better."
+        }
+      ],
+      "q2": [
+        {
+          "q": "Why are teachers called special friends?",
+          "a": "They guide students with care, help them learn and encourage them to become better people."
+        },
+        {
+          "q": "How do teachers guide us in life?",
+          "a": "They help us distinguish right from wrong, gain knowledge and face life with confidence."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the central idea of 'Why God Made Teachers'.",
+          "a": "Teachers are not only providers of knowledge; they are guides who help us understand the world, choose the right path and develop good character. Their guidance helps us make the world a better place."
+        }
+      ]
+    },
+    {
+      "no": 4,
+      "name": "Froth and Bubble",
+      "author": "Adam Lindsay Gordon",
+      "q1": [
+        {
+          "q": "What should we not do according to the poet?",
+          "a": "We should not give up before our goal is achieved."
+        },
+        {
+          "q": "Whom should we help?",
+          "a": "We should help every weak or helpless neighbour."
+        },
+        {
+          "q": "What should we not ask for?",
+          "a": "We should not depend on others for help in achieving our own goal."
+        },
+        {
+          "q": "What is life compared to?",
+          "a": "Life is compared to froth and bubble."
+        },
+        {
+          "q": "What does 'stone' mean in the poem?",
+          "a": "It refers to strong and lasting qualities such as kindness and courage."
+        }
+      ],
+      "q2": [
+        {
+          "q": "When are kindness and courage important?",
+          "a": "Kindness is important when another person is in trouble, while courage is important when we face our own difficulties."
+        },
+        {
+          "q": "How should we behave until we achieve our goal?",
+          "a": "We should work hard, help others and continue without giving up."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Explain the message of 'Froth and Bubble'.",
+          "a": "Life may be short and temporary like froth and bubble. Therefore, we should work hard towards our goals, show kindness when others suffer and face our own difficulties with courage."
+        },
+        {
+          "q": "Why does the poet compare life to 'froth and bubble'?",
+          "a": "Froth and bubbles do not last long. The comparison reminds us that life is temporary and should be lived with kindness, courage and purpose."
+        }
+      ]
+    }
+  ],
+  "ಪೂರಕ ಪಾಠ": [
+    {
+      "no": 1,
+      "name": "The Never Ending Story",
+      "author": "Supplementary Reading",
+      "q1": [
+        {
+          "q": "Why did Emperor Akbar need a solution to his problem?",
+          "a": "He had developed a strong habit of listening to stories and constantly asking what happened next."
+        },
+        {
+          "q": "What kind of solution was suggested?",
+          "a": "A clever story was used to change his habit."
+        },
+        {
+          "q": "Why did the courtiers approach Birbal?",
+          "a": "They wanted Birbal to find a solution to Akbar's problem."
+        },
+        {
+          "q": "What problem did the Bhil have?",
+          "a": "Birds were taking away the grain he had stored."
+        },
+        {
+          "q": "What did the Bhil do to stop the birds?",
+          "a": "He tried to trap them near the stored grain."
+        },
+        {
+          "q": "How did the little sparrow solve the problem?",
+          "a": "It used its friendship with a mouse to get help in opening the trap."
+        }
+      ],
+      "q2": [
+        {
+          "q": "How did Birbal teach Akbar a lesson through his story?",
+          "a": "He told a very slow story so that Akbar experienced the same frustration caused by repeatedly asking for the next part."
+        },
+        {
+          "q": "Why was the slow story an effective strategy?",
+          "a": "It made Akbar experience his own habit and understand why it was troublesome."
+        }
+      ],
+      "q4": [
+        {
+          "q": "Write the summary of 'The Never Ending Story'.",
+          "a": "Akbar had developed the habit of listening to stories and repeatedly asking what happened next. Birbal told a deliberately slow story about birds carrying grain one by one. Akbar finally understood his habit and learned the lesson."
+        },
+        {
+          "q": "Describe Birbal's intelligence.",
+          "a": "Birbal did not lecture Akbar directly. Instead, he created a story that allowed Akbar to experience the problem himself. This clever method helped the emperor understand his mistake."
+        }
+      ]
+    }
+  ]
+};
+const COMPOSITION={15:{a:5,b:3,c:1},20:{a:4,b:4,c:2},25:{a:5,b:4,c:3}};
+const sectionSelect=document.getElementById('sectionSelect'),chapterSelect=document.getElementById('chapterSelect');
+
+Object.keys(DATA).forEach(sec=>{const opt=document.createElement('option');opt.value=sec;opt.textContent=sec;sectionSelect.appendChild(opt);});
+function populateChapters(){chapterSelect.innerHTML='';DATA[sectionSelect.value].forEach((ch,idx)=>{const opt=document.createElement('option');opt.value=idx;opt.textContent=ch.no+'. '+ch.name+' ('+ch.author+')';chapterSelect.appendChild(opt);});}
+sectionSelect.addEventListener('change',populateChapters);populateChapters();
+
+document.querySelectorAll('input[name=marks]').forEach(r=>r.addEventListener('change',()=>{document.querySelectorAll('.pill').forEach(l=>l.classList.remove('selected'));r.closest('.pill').classList.add('selected');}));
+function pickRandom(arr,n){const copy=arr.slice(),out=[];n=Math.min(n,copy.length);while(out.length<n){const i=Math.floor(Math.random()*copy.length);out.push(copy[i]);copy.splice(i,1);}return out;}
+function formatDMY(v){if(!v)return"____ . ____ . ______";const [y,m,d]=v.split('-');return d+'.'+m+'.'+y;}
+let currentChapter=null,currentMarks=null;
+function getSelectedChapter(){return DATA[sectionSelect.value][parseInt(chapterSelect.value,10)];}
+function generatePaper(){const ch=getSelectedChapter(),marks=parseInt(document.querySelector('input[name=marks]:checked').value,10);currentChapter=ch;currentMarks=marks;renderPaper(ch,marks);}
+function shuffleQuestions(){if(!currentChapter){generatePaper();return;}renderPaper(currentChapter,currentMarks);}
+function qList(arr,mark){return arr.map(x=>'<li contenteditable="true">'+x.q+' <span class="qmark">['+mark+' Marks]</span></li>').join('');}
+function aList(arr){return arr.map(x=>'<li><b>Question:</b> '+x.q+'<br><b>Answer:</b> '+x.a+'</li>').join('');}
+function renderPaper(ch,marks){
+ const comp=COMPOSITION[marks];
+ const school=document.getElementById('schoolName').value||'____________________________ SCHOOL';
+ const subject=document.getElementById('subject').value||'English – Second Language';
+ const cls=document.getElementById('className').value||'7ನೇ Class';
+ const year=document.getElementById('testName').value||'2026-27';
+ const teacher=document.getElementById('teacherName').value||'________________________';
+ const date=formatDMY(document.getElementById('examDate').value);
+ const qa=pickRandom(ch.q1,comp.a),qb=pickRandom(ch.q2,comp.b),qc=pickRandom(ch.q4,comp.c);
+ const formula='Total Marks = '+comp.a+'×1 + '+comp.b+'×2 + '+comp.c+'×4 = '+marks;
+ const html='<div class="school-name" contenteditable="true">'+school+'</div>'+
+ '<div class="subject-line" contenteditable="true">'+subject+' — '+cls+' &nbsp; | &nbsp; Academic Year: '+year+'</div>'+
+ '<div class="test-title" contenteditable="true">'+ch.no+'. '+ch.name+' — '+ch.author+'</div><hr class="sep">'+
+ '<div class="meta-row"><div><b>Teacher:</b> '+teacher+'</div><div><b>Date:</b> '+date+'</div><div><b>Total Marks:</b> '+marks+'</div><div><b>Time:</b> ____________</div></div><hr class="sep">'+
+ '<div class="section-title">Section - ಅ : Answer the following questions in one sentence. (1 Mark each)</div><ol class="qlist">'+qList(qa,1)+'</ol>'+
+ '<div class="section-title">Section - ಆ : Answer the following questions in two or three sentences. (2 Marks each)</div><ol class="qlist">'+qList(qb,2)+'</ol>'+
+ '<div class="section-title">Section - ಇ : Answer the following questions in a paragraph. (4 Marks each)</div><ol class="qlist">'+qList(qc,4)+'</ol>'+
+ '<div class="marks-formula-box" contenteditable="true">'+formula+'</div><div style="margin-top:22px;text-align:center;font-weight:bold;">*** Best Wishes ***</div>'+
+ '<div class="pdf-footer"><strong>SCHOOL RESOURCE CENTER</strong><br><a href="https://bilingualmediumschools.blogspot.com/" target="_blank">https://bilingualmediumschools.blogspot.com/</a></div>'+
+ '<div id="answerSection"><div class="answer-title">Answer Key</div>'+
+ '<div class="section-title">Section - ಅ ಉತ್ತರಗಳು</div><ol class="alist">'+aList(qa)+'</ol>'+
+ '<div class="section-title">Section - ಆ ಉತ್ತರಗಳು</div><ol class="alist">'+aList(qb)+'</ol>'+
+ '<div class="section-title">Section - ಇ ಉತ್ತರಗಳು</div><ol class="alist">'+aList(qc)+'</ol>'+
+ '<div class="pdf-footer"><strong>SCHOOL RESOURCE CENTER</strong><br>https://bilingualmediumschools.blogspot.com/</div></div>';
+ const p=document.getElementById('paper');p.innerHTML=html;p.style.display='block';document.getElementById('printBtnRow').style.display='block';p.scrollIntoView({behavior:'smooth'});updatePrintPreference();
+}
+function toggleAnswers(){const s=document.getElementById('answerSection');if(!s){alert('ಮೊದಲು Generate Question Paper.');return;}s.style.display=s.style.display==='block'?'none':'block';if(s.style.display==='block')s.scrollIntoView({behavior:'smooth'});}
+function updatePrintPreference(){const s=document.getElementById('answerSection'),c=document.getElementById('includeAnswersPrint');if(!s||!c)return;c.checked?s.classList.add('print-with-answers'):s.classList.remove('print-with-answers');}
+function addCustomQuestion(){const p=document.getElementById('paper'),lists=p.querySelectorAll('ol.qlist');if(!lists.length){alert('ಮೊದಲು Generate Question Paper.');return;}const li=document.createElement('li');li.contentEditable='true';li.innerHTML='Type your own question here... <span class="qmark">[__ Marks]</span>';lists[lists.length-1].appendChild(li);li.focus();}
+function resetAll(){document.getElementById('schoolName').value='';document.getElementById('subject').value='English – Second Language';document.getElementById('className').value='7ನೇ Class';document.getElementById('testName').value='2026-27';document.getElementById('teacherName').value='';document.getElementById('examDate').value='';document.getElementById('includeAnswersPrint').checked=false;sectionSelect.selectedIndex=0;populateChapters();chapterSelect.selectedIndex=0;document.querySelectorAll('input[name=marks]').forEach(r=>r.checked=r.value==='20');document.querySelectorAll('.pill').forEach(l=>l.classList.remove('selected'));document.querySelector('input[name=marks][value="20"]').closest('.pill').classList.add('selected');currentChapter=null;currentMarks=null;const p=document.getElementById('paper');p.innerHTML='';p.style.display='none';document.getElementById('printBtnRow').style.display='none';window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <!-- ಇದು ಮೊಬೈಲ್‌ನಲ್ಲಿಯೂ ಡೆಸ್ಕ್‌ಟಾಪ್ ವ್ಯೂ ಬರುವುದನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ -->
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <title>ನಿಮ್ಮ ಪೇಜ್ ಶೀರ್ಷಿಕೆ</title>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@media print{
+  .no-print{
+    display:none !important;
+  }
+}
+</style>
+
+<div class="no-print" style="text-align:center;margin:15px 0;">
+  <a href="https://bilingualmediumschools.blogspot.com/2026/04/home-page.html"
+     target="_blank"
+     style="display:inline-block;
+            background:#1565c0;
+            color:#fff;
+            text-decoration:none;
+            padding:10px 18px;
+            border-radius:8px;
+            font-weight:bold;
+            font-size:16px;">
+<br> ರಚನೆ: ಮನೋಹರ್ ಆರ್‌ ಕೆ.ಜಿ.ಎಫ್<br>
+    🌐 School Resource Centre – Click Here to Visit
+  </a>
+</div>
